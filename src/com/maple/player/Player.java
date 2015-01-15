@@ -26,13 +26,11 @@ public class Player {
 		return sumScore;
 	}
 
-	// TODO Test를 위해 임시로 생성한 Get 메소드임. PlayerTest, FraudPlayerTest가 정상적으로 완료되면
-	// 삭제예정
 	public Dice getDice() {
 		return dice;
 	}
 
-	// TODO Test를 위해 임시로 생성한 Set 메소드임. PlayerTest, FraudPlayerTest가 정상적으로 완료되면
+	// FIXME Test를 위해 임시로 생성한 Set 메소드임. PlayerTest, FraudPlayerTest가 정상적으로 완료되면
 	// 삭제예정
 	public void setSumScore(int sumScore) {
 		this.sumScore = sumScore;

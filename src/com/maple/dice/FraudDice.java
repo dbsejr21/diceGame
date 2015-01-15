@@ -6,10 +6,13 @@ public class FraudDice extends Dice {
 		NORMAL, STRONG, WEAK
 	}
 
-	private Mode mode = Mode.NORMAL;
-	
+	private Mode mode;
 	private int fraudDiceNum;
 	
+	public FraudDice () {
+		mode = Mode.NORMAL;
+	}
+
 	public Mode getMode() {
 		return mode;
 	}
@@ -20,21 +23,19 @@ public class FraudDice extends Dice {
 
 	@Override
 	public int rollDice() {
-		
+
 		while (true) {
 			fraudDiceNum = super.rollDice();
-			
-			if (fraudDiceNum <= 2) {
-//				mode = Mode.STRONG;
+						
+			if (fraudDiceNum <= 2 && mode == Mode.STRONG) {
 				continue;
-			} else if (fraudDiceNum >= 5) {
-//				mode = Mode.WEAK;
+			} else if (fraudDiceNum >= 5 && mode == Mode.WEAK) {
 				continue;
 			} else {
-//				mode = Mode.NORMAL;
 				break;
 			}
 		}
+		
 		return fraudDiceNum;
 	}
 
