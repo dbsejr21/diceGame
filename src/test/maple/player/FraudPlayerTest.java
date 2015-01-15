@@ -32,7 +32,10 @@ public class FraudPlayerTest {
 		//출력
 //		System.out.println("sumScorePlayer: " + player.getSumScore());
 //		System.out.println("sumScoreFraudPlayer: " + fraudPlayer.getSumScore());
-		System.out.println("fraudDiceNum: " + fraudPlayer.getDice().getDiceNum());
+//		System.out.println("fraudDiceNum: " + fraudPlayer.getDice().getDiceNum());
+		System.out.println("fraudDiceNum: " + fraudDiceNum);
+		System.out.println("");
+		System.out.println("");
 	}
 		
 	@Test
@@ -42,7 +45,10 @@ public class FraudPlayerTest {
 		player.setSumScore(10);
 		fraudPlayer.setSumScore(10);;
 		
+//		System.out.println(fraudPlayer.getName());
+		
 		//주사위 굴림
+//		fraudPlayer.beforeRollDice();
 		fraudPlayer.rollDice();
 		
 		fraudDiceNum = fraudPlayer.getDice().getDiceNum();
@@ -61,6 +67,7 @@ public class FraudPlayerTest {
 		fraudPlayer.setSumScore(2);;
 		
 		//주사위 굴림
+		fraudPlayer.beforeRollDice();
 		fraudPlayer.rollDice();
 		
 		fraudDiceNum = fraudPlayer.getDice().getDiceNum();
@@ -76,8 +83,8 @@ public class FraudPlayerTest {
 		fraudPlayer.setSumScore(20);;
 		
 		//주사위 굴림
+//		fraudPlayer.beforeRollDice();
 		fraudPlayer.rollDice();
-		
 		fraudDiceNum = fraudPlayer.getDice().getDiceNum();
 		
 		print();

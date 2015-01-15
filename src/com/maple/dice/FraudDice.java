@@ -23,25 +23,19 @@ public class FraudDice extends Dice {
 		
 		while (true) {
 			fraudDiceNum = super.rollDice();
-
-			switch (mode) {
-			case NORMAL:
-				break;
-				
-			case STRONG:
-				if (fraudDiceNum <= 2) {
-					continue;
-				}
-				break;
-			case WEAK:
-				if (fraudDiceNum >= 5) {
-					continue;
-				}
+			
+			if (fraudDiceNum <= 2) {
+//				mode = Mode.STRONG;
+				continue;
+			} else if (fraudDiceNum >= 5) {
+//				mode = Mode.WEAK;
+				continue;
+			} else {
+//				mode = Mode.NORMAL;
 				break;
 			}
-			
-			return fraudDiceNum;
 		}
+		return fraudDiceNum;
 	}
 
 }
