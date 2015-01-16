@@ -14,6 +14,9 @@ public class Player {
 		this.dice = dice;
 	}
 
+	public Player() {
+	}
+
 	public String getName() {
 		return name;
 	}
