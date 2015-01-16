@@ -11,9 +11,11 @@ public class Judge {
 	private List<Player> listPlayer;
 	private Recorder recorder;
 
-	public Judge(Recorder recorder) {
+	public Judge(List<Player> listPlayer, int rollNumber) {
 
-		this.recorder = recorder;
+		recorder = new Recorder(listPlayer);
+		this.listPlayer = listPlayer;
+		this.rollNumber = rollNumber;
 	}
 
 	public Judge() {
@@ -27,13 +29,14 @@ public class Judge {
 		this.listPlayer = listPlayer;
 	}
 
-	public Player manageGame() {
+	public void manageGame() {
 
 		for (int i = 0; i < rollNumber; i++) {
 			rollDice();
+			recorder.printStatusOnce();
 		}
-		
-		return chooseWinner();
+		recorder.printWinner(chooseWinner());
+//		System.out.println("zzzzzzzzzz");
 	}
 
 	private void rollDice() {
@@ -49,6 +52,9 @@ public class Judge {
 		for (Player player : listPlayer) {
 			if (player.getSumScore() > winner.getSumScore()) {
 				winner = player;
+			} else if (player.getSumScore() == winner.getSumScore()){
+				winner.setName("비김");
+//				winner = null;
 			}
 		}
 		return winner;
