@@ -15,4 +15,8 @@ public class Dice {
 		diceNum = random.nextInt(6) + 1;
 		return diceNum;
 	}
+
+	public int getDiceNum() {
+		return diceNum;
+	}
 }
