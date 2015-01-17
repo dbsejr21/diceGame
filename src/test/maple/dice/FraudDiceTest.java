@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.maple.dice.FraudDice;
+import com.maple.game.Mode;
 
 public class FraudDiceTest {
 	
@@ -25,12 +26,14 @@ public class FraudDiceTest {
 	
 	@Test
 	public void testRollDice_강함모드일때_항상_3이상이다 () {
+		fraudDice.setMode(Mode.STRONG);
 		int result = fraudDice.rollDice();
 		assertTrue(result >= 3);
 	}
 	
 	@Test
 	public void testRollDice_약함모드일때_항상_4이하다 () {
+		fraudDice.setMode(Mode.WEAK);
 		int result = fraudDice.rollDice();
 		assertTrue(result <= 4);
 	}

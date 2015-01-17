@@ -7,36 +7,40 @@ import com.maple.player.Player;
 
 public class Judge {
 
-	private int rollNumber;
+	private int gameRound;
 	private List<Player> listPlayer;
 	private Recorder recorder;
 
-	public Judge(Recorder recorder) {
-
-		this.recorder = recorder;
-	}
-
 	public Judge() {
+		listPlayer = new ArrayList<Player>();
+		recorder = new Recorder(listPlayer);
 	}
 
-	public void setRollNumber(int rollNumber) {
-		this.rollNumber = rollNumber;
+	public void setGameRound(int gameRound) {
+		this.gameRound = gameRound;
 	}
 
-	public void setListPlayer(List<Player> listPlayer) {
-		this.listPlayer = listPlayer;
+	public void registerPlayer(Player player) {
+		listPlayer.add(player);
 	}
 
-	public Player manageGame() {
+	public void manageGame() {
 
-		for (int i = 0; i < rollNumber; i++) {
-			rollDice();
+		for (int i = 0; i < gameRound; i++) {
+			beforePlayOneRound();
+			playOneRound();
+			recorder.printOneRound();
 		}
-		
-		return chooseWinner();
+		recorder.printWinner(chooseWinner());
 	}
 
-	private void rollDice() {
+	private void beforePlayOneRound() {
+		for (Player player : listPlayer) {
+			player.beforeRollDice();
+		}
+	}
+
+	private void playOneRound() {
 		for (Player player : listPlayer) {
 			player.rollDice();
 		}
@@ -44,11 +48,12 @@ public class Judge {
 
 	private Player chooseWinner() {
 		Player winner = new Player();
-		winner.setSumScore(0);
 
 		for (Player player : listPlayer) {
 			if (player.getSumScore() > winner.getSumScore()) {
 				winner = player;
+			} else if (player.getSumScore() == winner.getSumScore()) {
+				return null;
 			}
 		}
 		return winner;
