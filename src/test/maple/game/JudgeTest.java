@@ -21,7 +21,6 @@ public class JudgeTest {
 	
 	private Player player1 = new Player("주윤덕", new Dice());
 	private Player player2 = new Player("엄마", new Dice());
-	private Player winner = null;
 	
 	private List<Player> listPlayer = new ArrayList<Player>();
 	
@@ -43,7 +42,10 @@ public class JudgeTest {
 		
 		// Recorder 구현 되었을때
 //		recorder = new Recorder(listPlayer);
-		judge = new Judge(listPlayer, 5);
+		judge = new Judge();
+		judge.setGameRound(5);
+		judge.registerPlayer(player1);
+		judge.registerPlayer(player2);
 		
 	}
 	

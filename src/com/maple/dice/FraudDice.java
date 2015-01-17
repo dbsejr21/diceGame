@@ -1,10 +1,8 @@
 package com.maple.dice;
 
-public class FraudDice extends Dice {
+import com.maple.game.Mode;
 
-	public enum Mode {
-		NORMAL, STRONG, WEAK
-	}
+public class FraudDice extends Dice {
 
 	private Mode mode;
 	private int fraudDiceNum;
@@ -23,10 +21,9 @@ public class FraudDice extends Dice {
 
 	@Override
 	public int rollDice() {
-
+	
 		while (true) {
-			fraudDiceNum = super.rollDice();
-						
+			fraudDiceNum = super.rollDice();				
 			if (fraudDiceNum <= 2 && mode == Mode.STRONG) {
 				continue;
 			} else if (fraudDiceNum >= 5 && mode == Mode.WEAK) {
@@ -35,8 +32,6 @@ public class FraudDice extends Dice {
 				break;
 			}
 		}
-		
 		return fraudDiceNum;
 	}
-
 }

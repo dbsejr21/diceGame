@@ -2,6 +2,7 @@ package com.maple.game;
 
 import java.util.List;
 
+import com.maple.dice.FraudDice;
 import com.maple.player.Player;
 
 public class Recorder {
@@ -9,35 +10,43 @@ public class Recorder {
 	private List<Player> listPlayer;
 
 	public Recorder(List<Player> listPlayer){
-		this.listPlayer = listPlayer; 
+		this.listPlayer = listPlayer;
 	}
-
 	
-	public void printStatusOnce() {
-		StringBuffer stringBuffer = new StringBuffer();
-		stringBuffer.append("[ ");
-		stringBuffer.append(listPlayer.get(0).getName() + ":" + listPlayer.get(0).getSumScore() );
-		stringBuffer.append(" ");
-		stringBuffer.append(listPlayer.get(1).getName() + ":" + listPlayer.get(1).getSumScore() );
-		stringBuffer.append(" ]");
-		stringBuffer.append("\n");
+	public void printOneRound() {
+		StringBuffer strBuffer = new StringBuffer();
 		
-		System.out.println(stringBuffer.toString());
+		strBuffer.append("[");
+		for (Player player: listPlayer) {
+			strBuffer.append(" " + player.getName() + ":" + player.getSumScore() + getCurrentMode(player) + " ");
+		}
+		strBuffer.append("]");
+		
+		System.out.println(strBuffer.toString());
+	}
+	
+	private String getCurrentMode(Player player) {
+		String currentMode;
+		if ( player.getDice().getClass().getSimpleName().equals("FraudDice") ) {
+			FraudDice fraudDice = (FraudDice) player.getDice();
+			currentMode = "[" + fraudDice.getMode().toString() +"]";
+		} else {
+			currentMode = "";
+		}
+		return currentMode.toString();
 	}
 	
 	public void printWinner(Player winner) {
 		
-		StringBuffer stringBuffer = new StringBuffer();
-		String winnderName = winner.getName();
-		stringBuffer.append("승자를 기록합니다.\n");
+		StringBuffer strBuffer = new StringBuffer();
+		strBuffer.append("\n승자를 기록합니다.\n");
 		
-		if (winnderName == "비김") {
-			stringBuffer.append("비겼습니다.\n");
+		if (winner == null) {
+			strBuffer.append("비겼습니다.\n");
 		} else {
-			stringBuffer.append(winner.getName() + "가 승리했습니다!\n");
-		}
-		
-		System.out.println(stringBuffer.toString());
+			strBuffer.append(winner.getName() + "님이 승리했습니다!\n");
+		}		
+		System.out.println(strBuffer.toString());
 	}
 	
 }

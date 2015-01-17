@@ -8,11 +8,8 @@ import com.maple.dice.FraudDice;
 import com.maple.player.FraudPlayer;
 import com.maple.player.Player;
 
-import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
-import static org.junit.matchers.JUnitMatchers.*;
-import static org.mockito.Matchers.*;
-import static org.mockito.Mockito.*;
+
 
 public class FraudPlayerTest {
 
@@ -28,6 +25,7 @@ public class FraudPlayerTest {
 	}
 
 	private void printResult() {
+		System.out.println("fraudDiceNum: " + ((FraudDice)fraudPlayer.getDice()).getMode());
 		System.out.println("fraudDiceNum: " + fraudDiceNum);
 		System.out.println("");
 		System.out.println("");

@@ -5,8 +5,7 @@ import com.maple.dice.Dice;
 public class Player {
 
 	private String name;
-	protected int sumScore;
-
+	private int sumScore;
 	private Dice dice;
 
 	public Player(String name, Dice dice) {
@@ -33,10 +32,16 @@ public class Player {
 		return dice;
 	}
 
-	// FIXME Test를 위해 임시로 생성한 Set 메소드임. PlayerTest, FraudPlayerTest가 정상적으로 완료되면
-	// 삭제예정
+	/*
+	 * FIXME PlayerTest, FraudPlayerTest 이기는상황, 지는상황, 비기는상황 연출하기위한 
+	 * 임시로 생성한 Set 메소드임. 삭제예정
+	 */
 	public void setSumScore(int sumScore) {
 		this.sumScore = sumScore;
+	}
+	
+	public void beforeRollDice() {
+		
 	}
 
 	public void rollDice() {
